@@ -1,13 +1,13 @@
 {
   "name": "short-unique-id",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Short UUID Generator with browser and ES6 import support",
   "main": "dist/short-unique-id.min.js",
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm run lint && npm run test && npm run build:dist",
     "build:dist": "npm run build:lib && uglifyjs ./lib/short-unique-id.js > ./dist/short-unique-id.min.js",
-    "build:lib": "buble ./src/short-unique-id.js > ./lib/short-unique-id.js",
+    "build:lib": "babel src --presets babel-preset-es2015 --out-dir lib",
     "test": "npm run build:lib && jasmine",
     "lint": "eslint -c .eslintrc.json ./src"
   },
@@ -31,7 +31,8 @@
   },
   "homepage": "https://github.com/jeanlescure/short-unique-id#readme",
   "devDependencies": {
-    "buble": "^0.15.2",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "11.1.3",
     "eslint-plugin-html": "2.0.1",
